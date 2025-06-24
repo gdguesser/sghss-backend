@@ -1,0 +1,64 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Usuario {
+  +ID: int
+  +Email: string
+  +SenhaHash: string
+  +Perfil: string
+  +CriadoEm: DateTime
+}
+
+class Paciente {
+  +ID: int
+  +Nome: string
+  +CPF: string
+  +DataNascimento: DateTime
+  +HistoricoClinico: string
+  +CriadoEm: DateTime
+  +AtualizadoEm: DateTime
+}
+
+class ProfissionalSaude {
+  +ID: int
+  +Nome: string
+  +CRMCOREN: string
+  +Especialidade: string
+  +PerfilUsuarioID: int
+  +CriadoEm: DateTime
+  +AtualizadoEm: DateTime
+}
+
+class Consulta {
+  +ID: int
+  +PacienteID: int
+  +ProfissionalID: int
+  +DataHora: DateTime
+  +Especialidade: string
+  +Status: string
+  +Observacoes: string
+  +CriadoEm: DateTime
+  +AtualizadoEm: DateTime
+}
+
+class Prontuario {
+  +ID: int
+  +PacienteID: int
+  +ProfissionalID: int
+  +DataAtendimento: DateTime
+  +Diagnostico: string
+  +Tratamento: string
+  +Medicamentos: string
+  +Observacoes: string
+  +CriadoEm: DateTime
+  +AtualizadoEm: DateTime
+}
+
+Usuario "1" -- "1" ProfissionalSaude : tem >
+Paciente "1" -- "*" Consulta : tem >
+ProfissionalSaude "1" -- "*" Consulta : realiza >
+Paciente "1" -- "*" Prontuario : tem >
+ProfissionalSaude "1" -- "*" Prontuario : registra >
+
+@enduml
+

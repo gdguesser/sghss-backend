@@ -1,0 +1,38 @@
+@startuml
+start
+
+:Login como Profissional;
+
+:Criar Paciente;
+:Criar Profissional;
+
+partition "Testes de Consulta" {
+  :Tentar Criar Consulta (Dados Válidos);
+  if (Sucesso?) then (Sim)
+    :Verificar ID da Consulta;
+    :Tentar Obter Consulta por ID;
+    :Tentar Atualizar Consulta;
+  else (Não)
+    :Reportar Erro de Criação;
+  endif
+}
+
+partition "Testes de Prontuário" {
+  :Tentar Criar Prontuário (Dados Válidos);
+  if (Sucesso?) then (Sim)
+    :Verificar ID do Prontuário;
+    :Tentar Obter Prontuário por ID;
+    :Tentar Atualizar Prontuário;
+  else (Não)
+    :Reportar Erro de Criação;
+  endif
+}
+
+:Tentar Excluir Consulta;
+:Tentar Excluir Prontuário;
+
+:Limpar Dados de Teste;
+
+end
+@enduml
+

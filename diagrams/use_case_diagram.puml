@@ -1,0 +1,56 @@
+@startuml
+left to right direction
+
+actor Paciente
+actor ProfissionalSaude as "Profissional de Saúde"
+actor Administrador
+
+rectangle "Sistema de Gestão Hospitalar SGHSS" {
+  usecase (Registrar Usuário) as UC1
+  usecase (Login no Sistema) as UC2
+  usecase (Gerenciar Pacientes) as UC3
+  usecase (Gerenciar Profissionais de Saúde) as UC4
+  usecase (Agendar Consulta) as UC5
+  usecase (Visualizar Minhas Consultas) as UC6
+  usecase (Cancelar Consulta) as UC7
+  usecase (Registrar Prontuário) as UC8
+  usecase (Visualizar Prontuário) as UC9
+  usecase (Atualizar Prontuário) as UC10
+  usecase (Gerenciar Usuários do Sistema) as UC11
+}
+
+Paciente -- UC1
+Paciente -- UC2
+Paciente -- UC6
+Paciente -- UC9
+
+"Profissional de Saúde" -- UC1
+"Profissional de Saúde" -- UC2
+"Profissional de Saúde" -- UC3
+"Profissional de Saúde" -- UC4
+"Profissional de Saúde" -- UC5
+"Profissional de Saúde" -- UC6
+"Profissional de Saúde" -- UC7
+"Profissional de Saúde" -- UC8
+"Profissional de Saúde" -- UC9
+"Profissional de Saúde" -- UC10
+
+Administrador -- UC1
+Administrador -- UC2
+Administrador -- UC3
+Administrador -- UC4
+Administrador -- UC11
+
+UC1 <. (UC2) : extends
+UC2 <. (UC3) : includes
+UC2 <. (UC4) : includes
+UC2 <. (UC5) : includes
+UC2 <. (UC6) : includes
+UC2 <. (UC7) : includes
+UC2 <. (UC8) : includes
+UC2 <. (UC9) : includes
+UC2 <. (UC10) : includes
+UC2 <. (UC11) : includes
+
+@enduml
+
